@@ -1,3 +1,7 @@
+let timer = null;
+let currentNumberIndex = 0;
+let announcer = null;
+
 //Selecciona el formulario
 const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
@@ -12,6 +16,61 @@ form.addEventListener('submit', (event) => {
   cards.forEach((card) => {
     cardsElement.appendChild(card);
   }); 
+
+  // Genera una matriz de números aleatorios del 1 al 75
+  const numbers = generateNumbers();
+
+  // Selecciona el elemento de la página donde se mostrará el número anunciado
+  announcer = document.querySelector('.number-announcer');
+  announcer.innerHTML = '';
+
+  // Inicializa el índice de números y muestra el primer número en la página
+  currentNumberIndex = 0;
+  announcer.innerHTML = numbers[currentNumberIndex];
+  currentNumberIndex++;
+
+  // Inicializa la variable que indica si el juego está pausado
+  let isPaused = false;
+  // Configura un temporizador que mostrará números cada 5 segundos
+  const timer = setInterval(() => {
+      // Si el juego está pausado, no muestra el siguiente número
+    if (isPaused) {
+      return;
+    }
+
+    // Si se han mostrado todos los números, detiene el temporizador y muestra un mensaje de "Bingo"
+    if (currentNumberIndex === numbers.length) {
+      clearInterval(timer);
+      announcer.innerHTML = '¡Bingo!';
+      return;
+    }
+
+    // Muestra el siguiente número
+    announcer.innerHTML = numbers[currentNumberIndex];
+    currentNumberIndex++;
+  }, 5000);
+
+  // Selecciona el botón de pausa y lo configura para que pause o reanude el juego
+  const pauseButton = document.querySelector('#pause-btn');
+  pauseButton.addEventListener('click', () => {
+    isPaused = !isPaused;
+    pauseButton.innerHTML = isPaused ? 'Resume' : 'Pause';
+  });
+
+  // Selecciona el botón de parada y lo configura para detener el juego y borrar todas las cartas
+  const stopButton = document.querySelector('#stop-btn');
+  stopButton.addEventListener('click', () => {
+    // Detiene el temporizador, reinicia el índice y borra el número anunciado
+    clearInterval(timer);
+    currentNumberIndex = 0;
+    announcer.innerHTML = '';
+
+    // Selecciona el contenedor de las cartas y borra todas las cartas generadas
+    const cardsElement = document.querySelector('.cards');
+    while (cardsElement.firstChild) {
+    cardsElement.removeChild(cardsElement.firstChild);
+    }
+  });
 });
 
 function generateCards(numberOfCards) {
@@ -56,4 +115,23 @@ function generateCard() {
   
     // Devuelve la carta de bingo.
     return card;
+}
+
+function generateNumbers() {
+  // Crear un array vacío donde se guardarán los números del 1 al 75
+  const numbers = [];
+
+  // Agregar los números del 1 al 75 al array
+  for (let i = 1; i <= 75; i++) {
+    numbers.push(i);
+  }
+
+  // Mezclar los números en el array usando el algoritmo
+  for (let i = numbers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+  }
+  
+  // Retornar el array con los números mezclados
+  return numbers;
 }
