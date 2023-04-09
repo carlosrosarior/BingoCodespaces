@@ -27,6 +27,7 @@ form.addEventListener('submit', (event) => {
   // Inicializa el índice de números y muestra el primer número en la página
   currentNumberIndex = 0;
   announcer.innerHTML = numbers[currentNumberIndex];
+  crossOutNumber(numbers[currentNumberIndex]);
   currentNumberIndex++;
 
   // Inicializa la variable que indica si el juego está pausado
@@ -47,6 +48,7 @@ form.addEventListener('submit', (event) => {
 
     // Muestra el siguiente número
     announcer.innerHTML = numbers[currentNumberIndex];
+	crossOutNumber(numbers[currentNumberIndex]);
     currentNumberIndex++;
   }, 5000);
 
@@ -135,3 +137,15 @@ function generateNumbers() {
   // Retornar el array con los números mezclados
   return numbers;
 }
+
+function crossOutNumber(number) {
+	// Obtener todas las celdas de las cartas
+	const cells = document.querySelectorAll('.bingo-card td');
+
+	// Añadir la clase announced a las celdas que contengan el número anunciado
+	cells.forEach((cell) => {
+	  if (cell.textContent == number) {
+		cell.classList.add('announced');
+	  }
+	});
+  }
