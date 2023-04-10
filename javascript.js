@@ -55,7 +55,7 @@ form.addEventListener("submit", (event) => {
             announcer.innerText = "¡Bingo!";
             return;
         }
-    }, 500);
+    }, 5000);
 
     // Selecciona el botón de pausa y lo configura para que pause o reanude el juego
     const pauseButton = document.querySelector("#pause-btn");
