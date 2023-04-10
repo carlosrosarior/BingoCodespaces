@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Bingo Game</title>
+</head>
+
+<body>
+    <h1>Bingo Card Game</h1>
+    <form>
+        <p>Número de cartones escogidos: <span>10</span></p>
+        <button type="submit" class="btn btn-success" onclick="ocultarBoton()" id="btn">Comenzar Juego</button>
+    </form>
+    <div class="container">
+        <div class="number-announcer" id="number-announcer" style="margin-bottom: 20px;"></div>
+        <button class="btn btn-warning" id="pause-btn" style="visibility: hidden;">Pausar juego</button>
+        <button class="btn btn-danger" id="stop-btn" style="visibility: hidden;">Detener juego</button>
+        <div class="cards"></div>
+    </div>
+    
+    <script>
+        var cards = sessionStorage.getItem("valor");
+        // Muestra los valores en la página
+        document.querySelector('span').textContent = cards;
+        console.log(document.querySelector('span').innerText);
+
+        function ocultarBoton() {
+            var btnStart = document.getElementById("btn");
+            var btnPause = document.getElementById("pause-btn");
+            var btnStop = document.getElementById("stop-btn");
+            btnStart.style.visibility = "hidden";
+            btnStart.style.display = "none";
+            btnPause.style.visibility = "visible";
+            btnStop.style.visibility = "visible";
+        }
+    </script>
+
+    <script src="javascript.js"></script>
+</body>
+
+</html>

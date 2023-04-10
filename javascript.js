@@ -2,13 +2,16 @@ let timer = null;
 let currentNumberIndex = 0;
 let announcer = null;
 
-//Selecciona el formulario
 const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   //Toma la variable numero de cartas y la parsea a Int
-  const numberOfCards = parseInt(document.querySelector('#numberOfCards').value, 10);
+  var contenidoSpan = document.querySelector('span').innerText;
+  // Convierte el contenido del span a un número
+  var numero = parseInt(contenidoSpan);
+
+  const numberOfCards = parseInt(numero, 10);
   const cards = generateCards(numberOfCards);
 
   const cardsElement = document.querySelector('.cards');

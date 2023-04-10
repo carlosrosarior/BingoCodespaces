@@ -1,0 +1,33 @@
+body{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+form{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container{
+    display: inline-flexbox;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#number-announcer {
+    margin-top: 10px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.announced {
+    color: red;
+    text-decoration: line-through;
+}

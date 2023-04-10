@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
-        <title>Bingo Game</title>
-    </head>
-    <body>
-        <h1>Bingo Card Game</h1>
-        <form>
-            <label for="numberOfCards">Número de cartas:</label>
-            <input type="number" id="numberOfCards" name="numberOfCards" min="1" max="10">
-          
-            <button type="submit" id="formulario">Comenzar</button>
-        </form>
-        <button id="pause-btn">Pause</button>
-        <button id="stop-btn">Stop</button>
-        <div class="cards">
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Bingo Game</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bingo Card Game</h1>
+        <p>Número de cartones a jugar</p>
+        <div class="form">
+            <form>
+                <div class="box">
+                    <div class="slider">
+                        <input type="range" min="1" max="10" value="3">
+                    </div>
+                    <div class="value">3</div>
+                </div>
+                <button class="btn btn-primary" type="submit" id="btn-submit">Comenzar</button>
+            </form>
         </div>
-        <div class="number-announcer"></div>
-        <script src="javascript.js"></script>
-    </body>
+    </div>
+
+    <script>
+        const slider = document.querySelector("input");
+        const value = document.querySelector(".value");
+        slider.addEventListener("input", function () {
+            value.textContent = slider.value; // Actualiza el contenido de la div con el valor del input
+        });
+
+        document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe
+
+            // Obtén los valores del formulario
+            var value = document.querySelector("input").value;
+
+            // Almacena los valores en variables de sesión o en localStorage para acceder a ellos en otra página
+            sessionStorage.setItem("valor", value);
+
+            // Redirige a la página de procesamiento del formulario
+            window.location.href = "main.html";
+        });
+
+    </script>
+
+</body>
+
 </html>
