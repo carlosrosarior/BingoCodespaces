@@ -18,7 +18,8 @@
     <div class="container">
         <div class="number-announcer" id="number-announcer" style="margin-bottom: 20px;"></div>
         <button class="btn btn-warning" id="pause-btn" style="visibility: hidden;">Pausar juego</button>
-        <button class="btn btn-danger" id="stop-btn" style="visibility: hidden;">Detener juego</button>
+        <button class="btn btn-danger" id="stop-btn" style="visibility: hidden;" onclick="ocultarBoton2()">Detener juego</button>
+        <button class="btn btn-info" id="back-btn" style="display: none;" onclick="irAPagina()">Volver atrás</button>
         <div class="cards"></div>
     </div>
     
@@ -37,6 +38,21 @@
             btnPause.style.visibility = "visible";
             btnStop.style.visibility = "visible";
         }
+
+        function ocultarBoton2(){
+            var btnBack = document.getElementById("back-btn");
+            var btnStop = document.getElementById("stop-btn");
+            var btnPause = document.getElementById("pause-btn");
+            btnStop.style.visibility = "hidden";
+            btnStop.style.display = "none";
+            btnPause.style.display = "none";
+            btnBack.style.display = "inline";
+
+        }
+        function irAPagina() {
+      // Redirige a la URL de la página deseada
+      window.location.href = 'index.html';
+    }
     </script>
 
     <script src="javascript.js"></script>
