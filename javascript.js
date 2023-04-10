@@ -22,10 +22,10 @@ form.addEventListener("submit", (event) => {
 
     const cardsTableContainer = document.querySelector(".cards");
 
-    cardsByPlayer.forEach((player) => {
+    cardsByPlayer.forEach((player, idx) => {
         const plrNameDiv = document.createElement("div");
         const plrStuffContainer = document.createElement("div");
-        plrNameDiv.innerText = "A player";
+        plrNameDiv.innerText = `Player ${idx + 1}`;
         plrStuffContainer.appendChild(plrNameDiv);
         player.forEach((card) => {
             plrStuffContainer.appendChild(card.table);
