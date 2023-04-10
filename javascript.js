@@ -59,7 +59,7 @@ form.addEventListener('submit', (event) => {
   const pauseButton = document.querySelector('#pause-btn');
   pauseButton.addEventListener('click', () => {
     isPaused = !isPaused;
-    pauseButton.innerHTML = isPaused ? 'Resume' : 'Pause';
+    pauseButton.innerHTML = isPaused ? 'Continuar' : 'Pausar juego';
   });
 
   // Selecciona el botón de parada y lo configura para detener el juego y borrar todas las cartas
