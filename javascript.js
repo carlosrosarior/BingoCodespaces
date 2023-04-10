@@ -7,17 +7,31 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     //Toma la variable numero de cartas y la parsea a Int
-    var contenidoSpan = document.querySelector("span").innerText;
-    // Convierte el contenido del span a un número
-    var numero = parseInt(contenidoSpan);
+    var cardAmountText = document.querySelector("#cartonAmount").innerText;
+    var playerAmountText = document.querySelector("#playerAmount").innerText;
 
-    const numberOfCards = parseInt(numero, 10);
-    const cards = generateCards(numberOfCards);
+    // Convierte el contenido del span a un número
+    const cardAmount = parseInt(cardAmountText);
+    const playerAmount = parseInt(playerAmountText);
+    const cardsByPlayer = [];
+    const cards = [];
+
+    for (let currentPlayer = 0; currentPlayer < playerAmount; currentPlayer++) {
+        cardsByPlayer.push(generateCards(cardAmount));
+    }
 
     const cardsTableContainer = document.querySelector(".cards");
 
-    cards.forEach((card) => {
-        cardsTableContainer.appendChild(card.table);
+    cardsByPlayer.forEach((player) => {
+        const plrNameDiv = document.createElement("div");
+        const plrStuffContainer = document.createElement("div");
+        plrNameDiv.innerText = "A player";
+        plrStuffContainer.appendChild(plrNameDiv);
+        player.forEach((card) => {
+            plrStuffContainer.appendChild(card.table);
+            cards.push(card);
+        });
+        cardsTableContainer.appendChild(plrStuffContainer);
     });
 
     // Selecciona el elemento de la página donde se mostrará el número anunciado

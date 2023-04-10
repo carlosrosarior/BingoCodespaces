@@ -12,22 +12,28 @@
 <body>
     <h1>Bingo Card Game</h1>
     <form>
-        <p>Número de cartones escogidos: <span>10</span></p>
+        <p>Número de jugadores escogidos: <span id="playerAmount">10</span></p>
+        <p>Número de cartones escogidos: <span id="cartonAmount">10</span></p>
+
         <button type="submit" class="btn btn-success" onclick="ocultarBoton()" id="btn">Comenzar Juego</button>
     </form>
     <div class="container">
         <div class="number-announcer" id="number-announcer" style="margin-bottom: 20px;"></div>
         <button class="btn btn-warning" id="pause-btn" style="visibility: hidden;">Pausar juego</button>
-        <button class="btn btn-danger" id="stop-btn" style="visibility: hidden;" onclick="ocultarBoton2()">Detener juego</button>
+        <button class="btn btn-danger" id="stop-btn" style="visibility: hidden;" onclick="ocultarBoton2()">Detener
+            juego</button>
         <button class="btn btn-info" id="back-btn" style="display: none;" onclick="irAPagina()">Volver atrás</button>
         <div class="cards"></div>
     </div>
-    
+
     <script>
         var cards = sessionStorage.getItem("valor");
+        var players = sessionStorage.getItem("jugadores");
         // Muestra los valores en la página
-        document.querySelector('span').textContent = cards;
-        console.log(document.querySelector('span').innerText);
+        document.querySelector('#cartonAmount').textContent = cards;
+        document.querySelector('#playerAmount').textContent = players;
+
+        // console.log(document.querySelector('span').innerText);
 
         function ocultarBoton() {
             var btnStart = document.getElementById("btn");
@@ -39,7 +45,7 @@
             btnStop.style.visibility = "visible";
         }
 
-        function ocultarBoton2(){
+        function ocultarBoton2() {
             var btnBack = document.getElementById("back-btn");
             var btnStop = document.getElementById("stop-btn");
             var btnPause = document.getElementById("pause-btn");
@@ -50,9 +56,9 @@
 
         }
         function irAPagina() {
-      // Redirige a la URL de la página deseada
-      window.location.href = 'index.html';
-    }
+            // Redirige a la URL de la página deseada
+            window.location.href = 'index.html';
+        }
     </script>
 
     <script src="javascript.js"></script>

@@ -12,35 +12,57 @@
 <body>
     <div class="container">
         <h1>Bingo Card Game</h1>
-        <p>Número de cartones a jugar</p>
         <div class="form">
             <form>
+                <p>Número de jugadores</p>
+
                 <div class="box">
                     <div class="slider">
-                        <input type="range" min="1" max="10" value="3">
+                        <input id="players" type="range" min="1" max="10" value="3">
                     </div>
-                    <div class="value">3</div>
+                    <div id="playersValue" class="value">3</div>
                 </div>
+
+                <p>Número de cartones a jugar</p>
+
+                <div class="box">
+                    <div class="slider">
+                        <input id="cartons" type="range" min="1" max="10" value="3">
+                    </div>
+                    <div id="cartonsValue" class="value">3</div>
+                </div>
+
                 <button class="btn btn-primary" type="submit" id="btn-submit">Comenzar</button>
             </form>
         </div>
     </div>
 
     <script>
-        const slider = document.querySelector("input");
-        const value = document.querySelector(".value");
-        slider.addEventListener("input", function () {
-            value.textContent = slider.value; // Actualiza el contenido de la div con el valor del input
+        const cartonsSlider = document.querySelector("#cartons");
+        const cartonsValues = document.querySelector("#cartonsValue");
+
+        const playersSlider = document.querySelector("#players");
+        const playersValues = document.querySelector("#playersValue");
+
+
+        cartonsSlider.addEventListener("input", function () {
+            cartonsValues.textContent = cartonsSlider.value; // Actualiza el contenido de la div con el valor del input
+        });
+
+        playersSlider.addEventListener("input", function () {
+            playersValues.textContent = playersSlider.value; // Actualiza el contenido de la div con el valor del input
         });
 
         document.querySelector("form").addEventListener("submit", function (event) {
             event.preventDefault(); // Evita que el formulario se envíe
 
             // Obtén los valores del formulario
-            var value = document.querySelector("input").value;
+            var value = cartonsSlider.value;
 
             // Almacena los valores en variables de sesión o en localStorage para acceder a ellos en otra página
             sessionStorage.setItem("valor", value);
+            sessionStorage.setItem("jugadores", playersSlider.value);
+
 
             // Redirige a la página de procesamiento del formulario
             window.location.href = "main.html";
